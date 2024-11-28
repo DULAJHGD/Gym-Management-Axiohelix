@@ -14,8 +14,6 @@ spring:
         generate-ddl: true
         hibernate:
           ddl-auto: update
-      main:
-        web-application-type: none
 springfox:
   documentation:
     swagger-ui:
