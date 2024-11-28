@@ -20,6 +20,10 @@
         SELECT id,email,password,role FROM user_authentication WHERE email = #{email}
     </select>
 
+    <select id="select" resultMap="UserAuthenticationMap">
+        SELECT * FROM user_authentication
+    </select>
+
     <insert id="create" parameterType="com.axiohelix.gymmanagement.entity.UserAccount">
         INSERT INTO user_authentication (
             id,

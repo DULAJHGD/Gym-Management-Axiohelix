@@ -5,6 +5,7 @@ import com.axiohelix.gymmanagement.mapper.UserAuthenticationMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -43,5 +44,9 @@ public class UserService {
 
     public void delete(String userId) {
         userAuthenticationMapper.deleteUser(userId);
+    }
+
+    public List<UserAccount> select() {
+       return userAuthenticationMapper.select();
     }
 }

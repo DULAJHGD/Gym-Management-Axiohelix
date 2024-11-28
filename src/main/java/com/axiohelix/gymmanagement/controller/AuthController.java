@@ -17,6 +17,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 @RequiredArgsConstructor
@@ -46,6 +48,11 @@ public class AuthController {
         return LoginResponce.builder()
                 .accessToken(token)
                 .build();
+    }
+
+    @GetMapping
+    public List<UserAccount> getUsers() {
+       return userService.select();
     }
 
     @PostMapping("/user")
