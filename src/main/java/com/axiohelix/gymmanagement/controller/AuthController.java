@@ -50,7 +50,7 @@ public class AuthController {
                 .build();
     }
 
-    @GetMapping
+    @GetMapping("/user")
     public List<UserAccount> getUsers() {
        return userService.select();
     }
