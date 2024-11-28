@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.axiohelix.gymmanagement.mapper.UserAuthenticationMapper">
+
+    <resultMap id="UserAuthenticationMap" type="com.axiohelix.gymmanagement.entity.UserAccount">
+        <id column="id" property="userId"/>
+        <result column="email" property="email"/>
+        <result column="password" property="password"/>
+        <result column="role" property="role"/>
+        <result column="status" property="status"/>
+        <result column="sort_order" property="sortOrder"/>
+        <result column="created_by" property="createdBy"/>
+        <result column="created_on" property="createdOn"/>
+        <result column="last_updated_by" property="lastModifiedBy"/>
+        <result column="last_updated_on" property="lastModifiedOn"/>
+    </resultMap>
+
+    <!-- Select a ShopUser by ID -->
+    <select id="selectUserEmailByEmail" resultMap="UserAuthenticationMap">
+        SELECT id,email,password,role FROM user_authentication WHERE email = #{email}
+    </select>
+
+    <insert id="create" parameterType="com.axiohelix.gymmanagement.entity.UserAccount">
+        INSERT INTO user_authentication (
+            id,
+            email,
+            password,
+            role,
+            status,
+            sort_order,
+            created_by,
+            created_on,
+            last_updated_by,
+            last_updated_on
+        ) VALUES (   #{userId},
+                     #{email},
+                     #{password},
+                     #{role},
+                     #{status},
+                     #{sortOrder},
+                     #{createdBy},
+                     #{createdOn},
+                     #{lastModifiedBy},
+                     #{lastModifiedOn}
+                 )
+    </insert>
+
+    <update id="update">
+        UPDATE user_authentication
+        SET
+            email = #{email},
+            password = #{password},
+            role = #{role},
+            status = #{status},
+            sort_order = #{sortOrder},
+            created_by = #{createdBy},
+            created_on = #{createdOn},
+            last_updated_by = #{lastModifiedBy},
+            last_updated_on = #{lastModifiedOn}
+        WHERE id = #{userId}
+    </update>
+
+    <delete id="delete">
+        DELETE FROM user_authentication WHERE id = #{id}
+    </delete>
+</mapper>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.axiohelix.gymmanagement.mapper.ShopUserMapper">
+
+    <resultMap id="shopUserResultMap" type="com.axiohelix.gymmanagement.entity.ShopUser">
+        <id property="id" column="id" />
+        <result property="storeName" column="store_name" />
+        <result property="maxCount" column="max_count" />
+        <result property="companyId" column="company_id" />
+        <result property="startDate" column="start_date" />
+        <result property="endDate" column="end_date" />
+        <result property="phoneNumber" column="phone_number" />
+        <result property="contactPerson" column="contact_person" />
+        <result property="address" column="address" />
+        <result property="token" column="token" />
+        <result property="status" column="status" />
+        <result property="sortOrder" column="sort_order" />
+        <result property="createdBy" column="created_by" />
+        <result property="createdOn" column="created_on" />
+        <result property="lastModifiedBy" column="last_modified_by" />
+        <result property="lastModifiedOn" column="last_modified_on" />
+    </resultMap>
+
+    <insert id="insertShopUser" parameterType="com.axiohelix.gymmanagement.entity.ShopUser">
+        INSERT INTO shop_user (
+            id,
+            store_name,
+            max_count,
+            company_id,
+            start_date,
+            end_date,
+            phone_number,
+            contact_person,
+            address,
+            token,
+            status,
+            sort_order,
+            created_by,
+            created_on,
+            last_modified_by,
+            last_modified_on
+        ) VALUES (
+                     #{id},
+                     #{storeName},
+                     #{maxCount},
+                     #{companyId},
+                     #{startDate},
+                     #{endDate},
+                     #{phoneNumber},
+                     #{contactPerson},
+                     #{address},
+                     #{token},
+                     #{status},
+                     #{sortOrder},
+                     #{createdBy},
+                     #{createdOn},
+                     #{lastModifiedBy},
+                     #{lastModifiedOn}
+                 )
+    </insert>
+
+    <!-- Select a ShopUser by ID -->
+    <select id="selectShopUserById" resultMap="shopUserResultMap">
+        SELECT * FROM shop_users WHERE id = #{id}
+    </select>
+
+    <!-- Select all ShopUsers -->
+    <select id="selectAllShopUsers" resultMap="shopUserResultMap">
+        SELECT * FROM shop_users
+    </select>
+
+    <update id="updateShopUser" parameterType="com.axiohelix.gymmanagement.entity.ShopUser">
+        UPDATE shop_user
+        SET
+            store_name = #{storeName},
+            max_count = #{maxCount},
+            company_id = #{companyId},
+            start_date = #{startDate},
+            end_date = #{endDate},
+            phone_number = #{phoneNumber},
+            contact_person = #{contactPerson},
+            address = #{address},
+            token = #{token},
+            status = #{status},
+            sort_order = #{sortOrder},
+            last_modified_by = #{lastModifiedBy},
+            last_modified_on = #{lastModifiedOn}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteShopUser" parameterType="string">
+        DELETE FROM shop_user WHERE id = #{id}
+    </delete>
+
+
+</mapper>
