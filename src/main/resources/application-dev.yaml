@@ -1,0 +1,29 @@
+security:
+  jwt:
+    secret-key : verygoodsequritykeygenaratenamalmahindarajapaksha
+spring:
+  datasource:
+    jdbcUrl: jdbc:mysql://localhost:3306/gym_management
+    username: root
+    password: Root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      jdbc-url: jdbc:mysql://localhost:3306/gym_management
+  jpa:
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+server:
+  port: 8080
+  servlet:
+    context-path: /api/v1
+
+springfox:
+  documentation:
+    swagger-ui:
+      enabled: true
+logging:
+  level:
+    ROOT: DEBUG
+

@@ -1,0 +1,26 @@
+security:
+  jwt:
+    secret-key : verybesatandnicelivelovefightwekendhgjkhfb
+spring:
+      datasource:
+        jdbcUrl: jdbc:mysql://localhost:3306/gym_management
+        username: root
+        password: mySqlDit#153
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        hikari:
+          jdbc-url: jdbc:mysql://localhost:3306/gym_management
+      jpa:
+        show-sql: true
+        generate-ddl: true
+        hibernate:
+          ddl-auto: update
+      main:
+        web-application-type: none
+springfox:
+  documentation:
+    swagger-ui:
+      enabled: true
+server:
+  port: 8081
+  servlet:
+    context-path: /api/v1
