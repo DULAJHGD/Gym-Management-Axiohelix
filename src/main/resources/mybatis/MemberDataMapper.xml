@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.axiohelix.gymmanagement.mapper.MemberDataMapper">
+    <resultMap id="MemberDataResultMap" type="com.axiohelix.gymmanagement.entity.MemberData">
+        <id column="id" property="id"/>
+        <result column="equipment_id" property="EquipmentId"/>
+        <result column="member_id" property="memberId"/>
+        <result column="date" property="date"/>
+        <result column="raw_data" property="rawData"/>
+        <result column="status" property="status"/>
+        <result column="sort_order" property="sortOrder"/>
+        <result column="created_by" property="createdBy"/>
+        <result column="created_on" property="createdOn"/>
+        <result column="last_update_by" property="lastModifiedBy"/>
+        <result column="last_update_on" property="lastModifiedOn"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.axiohelix.gymmanagement.entity.MemberData">
+        INSERT INTO member_data
+        (equipment_id, member_id, date, raw_data, status, sort_order, created_by, created_on, last_update_by, last_update_on)
+        VALUES
+            (#{EquipmentId}, #{memberId}, #{date}, #{rawData}, #{status}, #{sortOrder}, #{createdBy}, #{createdOn}, #{lastModifiedBy}, #{lastModifiedOn})
+    </insert>
+
+    <update id="update" parameterType="com.axiohelix.gymmanagement.entity.MemberData">
+        UPDATE member_data
+        SET
+            equipment_id = #{EquipmentId},
+            member_id = #{memberId},
+            date = #{date},
+            raw_data = #{rawData},
+            status = #{status},
+            sort_order = #{sortOrder},
+            created_by = #{createdBy},
+            created_on = #{createdOn},
+            last_update_by = #{lastModifiedBy},
+            last_update_on = #{lastModifiedOn}
+        WHERE id = #{id}
+    </update>
+
+    <select id="selectById" resultMap="MemberDataResultMap" parameterType="string">
+        SELECT
+            id, equipment_id, member_id, date, raw_data, status, sort_order, created_by, created_on, last_update_by, last_update_on
+        FROM
+            member_data
+        WHERE
+            id = #{id}
+    </select>
+
+    <select id="selectAll" resultMap="MemberDataResultMap">
+        SELECT
+            id, equipment_id, member_id, date, raw_data, status, sort_order, created_by, created_on, last_update_by, last_update_on
+        FROM
+            member_data
+    </select>
+
+    <select id="selectMemberDataByIdMachineAndDate" resultMap="MemberDataResultMap">
+        SELECT *
+        FROM
+            member_data
+        WHERE
+            member_id = #{MemberId}
+          AND equipment_id = #{EquipmentId}
+          AND date = #{date}
+    </select>
+
+    <select id="selectMemberDataByIdMachineDecoded" resultMap="MemberDataResultMap">
+        SELECT *
+        FROM
+            member_data
+        WHERE
+            member_id = #{MemberId}
+          AND equipment_id = #{EquipmentId}
+    </select>
+
+    <delete id="delete" parameterType="string">
+        DELETE FROM member_data WHERE id = #{id}
+    </delete>
+
+
+
+</mapper>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.axiohelix.gymmanagement.mapper.CompanyMapper">
+
+    <resultMap id="CompanyResultMap" type="com.axiohelix.gymmanagement.entity.Company">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="address" property="address"/>
+        <result column="phone_number" property="phoneNo"/>
+        <result column="company_registation_no" property="companyRegisterNo"/>
+        <result column="email" property="email"/>
+        <result column="remark" property="remark"/>
+        <result column="status" property="status"/>
+        <result column="sort_order" property="sortOrder"/>
+        <result column="created_by" property="createdBy"/>
+        <result column="created_on" property="createdOn"/>
+        <result column="last_update_by" property="lastModifiedBy"/>
+        <result column="last_update_on" property="lastModifiedOn"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.axiohelix.gymmanagement.entity.Company">
+        INSERT INTO company (
+            name, address, phone_number, company_registation_no, email,
+            remark, status, sort_order, created_by, created_on,
+            last_update_by, last_update_on
+        ) VALUES (
+                     #{name}, #{address}, #{phoneNo}, #{companyRegisterNo}, #{email},
+                     #{remark}, #{status}, #{sortOrder}, #{createdBy}, #{createdOn},
+                     #{lastModifiedBy}, #{lastModifiedOn}
+                 )
+    </insert>
+
+    <update id="update" parameterType="com.axiohelix.gymmanagement.entity.Company">
+        UPDATE company
+        SET
+            name = #{name},
+            address = #{address},
+            phone_number = #{phoneNo},
+            company_registation_no = #{companyRegisterNo},
+            email = #{email},
+            remark = #{remark},
+            status = #{status},
+            sort_order = #{sortOrder},
+            created_by = #{createdBy},
+            created_on = #{createdOn},
+            last_update_by = #{lastModifiedBy},
+            last_update_on = #{lastModifiedOn}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteById" parameterType="String">
+        DELETE FROM company
+        WHERE id = #{id}
+    </delete>
+
+    <select id="selectById" resultMap="CompanyResultMap" parameterType="String">
+        SELECT
+            id, name, address, phone_number, company_registation_no, email,
+            remark, status, sort_order, created_by, created_on,
+            last_update_by, last_update_on
+        FROM company
+        WHERE id = #{id}
+    </select>
+
+    <select id="selectAll" resultMap="CompanyResultMap">
+        SELECT
+            id, name, address, phone_number, company_registation_no, email,
+            remark, status, sort_order, created_by, created_on,
+            last_update_by, last_update_on
+        FROM company
+    </select>
+
+</mapper>
