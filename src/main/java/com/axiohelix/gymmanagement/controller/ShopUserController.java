@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
-@RequestMapping("/company")
+@RequestMapping("/shop")
 public class ShopUserController {
     @Autowired
     private ShopUserService shopUserService;
