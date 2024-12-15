@@ -7,29 +7,35 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
-@Setter
 @Getter
-public class ShopUser {
+@Setter
+public class User {
 
     private String id;
 
-    private String storeName;
+    private String userName;
 
-    private int maxCount;
+    private String nickname;
 
-    private String companyId;
+    private String firstName;
 
-    private String startDate;
+    private String lastName;
 
-    private String endDate;
+    private String email;
 
-    private String phoneNumber;
+    private String password;
 
-    private String contactPerson;
+    private String role;
 
-    private String address;
+    private String phone;
 
-    private String token;
+    private String gender;
+
+    private String birthday;
+
+    private Byte[] profilePicture;
+
+    private String remark;
 
     private int status;
 
@@ -39,14 +45,11 @@ public class ShopUser {
 
     private String createdOn;
 
-    private String lastModifiedBy;
+    private String lastUpdatedBy;
 
-    private String lastModifiedOn;
+    private String lastUpdatedOn;
 
-
-
-    // Constructor to auto-generate a 32-character userId
-    public ShopUser() {
+    public User() {
         this.id = generateShortUUID();
         this.createdOn =getCurrentTimestamp();
         this.status = 1;

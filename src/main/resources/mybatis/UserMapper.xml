@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.axiohelix.gymmanagement.mapper.UserMapper">
+
+    <resultMap id="UserMap" type="com.axiohelix.gymmanagement.entity.User">
+        <id column="id" property="id"/>
+        <id column="user_name" property="userName"/>
+        <id column="nickname" property="nickname"/>
+        <id column="first_name" property="firstName"/>
+        <id column="last_name" property="lastName"/>
+        <id column="email" property="email"/>
+        <id column="phone_number" property="phone"/>
+        <id column="sex" property="gender"/>
+        <id column="dob" property="birthday"/>
+        <id column="profile_img" property="profilePicture"/>
+        <id column="remark" property="remark"/>
+        <id column="status" property="status"/>
+        <id column="sortOrder" property="sort_order"/>
+        <id column="created_by" property="createdBy"/>
+        <id column="created_on" property="createdOn"/>
+        <id column="last_updated_by" property="lastUpdatedBy"/>
+        <id column="last_updated_on" property="lastUpdatedOn"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.axiohelix.gymmanagement.entity.User">
+        INSERT INTO user (
+            id,
+            user_name,
+            nickname,
+            first_name,
+            last_name,
+            email,
+            phone_number,
+            sex,
+            dob,
+            profile_img,
+            remark,
+            status,
+            sort_order,
+            created_by,
+            created_on,
+            last_updated_by,
+            last_updated_on
+        ) VALUES (
+                  #{id},
+                  #{userName},
+                  #{nickname},
+                  #{firstName},
+                  #{lastName},
+                  #{email},
+                  #{phone},
+                  #{gender},
+                  #{birthday},
+                  #{profilePicture},
+                  #{remark},
+                  #{status},
+                  #{sortOrder},
+                  #{createdBy},
+                  #{createdOn},
+                  #{lastUpdatedBy},
+                  #{lastUpdatedOn}
+                 )
+    </insert>
+
+    <update id="update" parameterType="com.axiohelix.gymmanagement.entity.User">
+        UPDATE user
+        SET
+            user_name = #{userName},
+            nickname = #{nickname},
+            first_name = #{firstName},
+            last_name = #{lastName},
+            email = #{email},
+            phone_number = #{phone},
+            sex = #{gender},
+            dob = #{birthday},
+            profile_img = #{profilePicture},
+            remark = #{remark},
+            status = #{status},
+            sort_order = #{sortOrder},
+            created_by = #{createdBy},
+            created_on = #{createdOn},
+            last_updated_by = #{lastUpdatedBy},
+            last_updated_on = #{lastUpdatedOn}
+        WHERE id = #{id}
+    </update>
+
+    <select id="getUserById" parameterType="String" resultMap="UserMap">
+        SELECT
+            id, user_name, nickname, first_name, last_name, email, phone_number, sex, dob, profile_img, remark, status, sort_order, created_by, created_on, last_updated_by, last_updated_on
+        FROM user
+        WHERE id = #{id}
+    </select>
+
+    <delete id="deleteUserById" parameterType="String">
+        DELETE FROM user
+        WHERE id = #{id}
+    </delete>
+</mapper>

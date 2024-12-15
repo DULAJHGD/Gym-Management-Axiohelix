@@ -36,6 +36,7 @@ public class MemberData {
     public MemberData() {
         this.id = generateShortUUID();
         this.createdOn =getCurrentTimestamp();
+        this.status = 1;
     }
 
     private String generateShortUUID() {

@@ -18,7 +18,7 @@ public class ShopGroup {
 
     private String remark;
 
-    private String status;
+    private int status;
 
     private int sortOrder;
 
@@ -34,6 +34,7 @@ public class ShopGroup {
     public ShopGroup() {
         this.Id = generateShortUUID();
         this.createdOn =getCurrentTimestamp();
+        this.status = 1;
     }
 
     private String generateShortUUID() {

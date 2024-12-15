@@ -36,6 +36,7 @@ public class UserAccount {
     public UserAccount() {
         this.userId = generateShortUUID();
         this.createdOn = String.valueOf(LocalDateTime.now()); // Set as LocalDateTime instead of String
+        this.status = 1;
     }
 
     private String generateShortUUID() {

@@ -25,7 +25,7 @@ public class Company {
 
     private String remark;
 
-    private String status;
+    private int status;
 
     private int sortOrder;
 
@@ -40,6 +40,7 @@ public class Company {
     public Company() {
         this.id = generateShortUUID();
         this.createdOn =getCurrentTimestamp();
+        this.status = 1;
     }
 
     private String generateShortUUID() {
