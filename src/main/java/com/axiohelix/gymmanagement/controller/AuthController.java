@@ -9,6 +9,8 @@ import com.axiohelix.gymmanagement.security.jwtIssuer;
 import com.axiohelix.gymmanagement.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -55,10 +57,32 @@ public class AuthController {
        return userService.select();
     }
 
+//    @PostMapping("/user")
+//    public void CreateUser(@RequestBody UserAccountDto dto){
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        String loggedInUserEmail = authentication.getName(); // Assuming `getName()` returns the user ID.
+//
+//
+//        UserAccount userAccount = new UserAccount();
+//        userAccount.setEmail(dto.getEmail());
+//        userAccount.setRole(dto.getRole());
+//        // Set the createdBy field to the logged-in user's ID
+//        userAccount.setCreatedBy(loggedInUserEmail);
+//        String encryptedPassword = passwordEncoder.encode(dto.getPassword());
+//        userAccount.setPassword(encryptedPassword);
+//        userService.insert(userAccount);
+//    }
+
     @PostMapping("/user")
-    public void CreateUser(@RequestBody UserAccountDto dto){
+    public ResponseEntity<String> createUser(@RequestBody UserAccountDto dto) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String loggedInUserEmail = authentication.getName(); // Assuming `getName()` returns the user ID.
+
+        // Check if the email already exists
+        if (userService.emailExists(dto.getEmail())) {
+            return ResponseEntity.badRequest().body("Email already exists");
+        }
+
         UserAccount userAccount = new UserAccount();
         userAccount.setEmail(dto.getEmail());
         userAccount.setRole(dto.getRole());
@@ -66,7 +90,9 @@ public class AuthController {
         userAccount.setCreatedBy(loggedInUserEmail);
         String encryptedPassword = passwordEncoder.encode(dto.getPassword());
         userAccount.setPassword(encryptedPassword);
+
         userService.insert(userAccount);
+        return ResponseEntity.ok("User created successfully");
     }
 
     @PutMapping("/user/{id}")

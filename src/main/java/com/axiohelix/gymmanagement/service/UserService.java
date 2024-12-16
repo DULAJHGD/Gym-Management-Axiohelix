@@ -49,4 +49,8 @@ public class UserService {
     public List<UserAccount> select() {
        return userAuthenticationMapper.select();
     }
+
+    public boolean emailExists(String email) {
+        return userAuthenticationMapper.selectUserEmailByEmail(email)!= null;
+    }
 }
