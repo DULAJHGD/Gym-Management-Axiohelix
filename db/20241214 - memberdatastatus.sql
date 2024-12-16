@@ -1,0 +1,2 @@
+  ALTER TABLE `member_data`
+CHANGE COLUMN `state` `status` TINYINT(1) NULL DEFAULT NULL ;
