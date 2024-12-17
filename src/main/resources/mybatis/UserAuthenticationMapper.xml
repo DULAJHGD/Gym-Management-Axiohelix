@@ -17,7 +17,7 @@
 
     <!-- Select a ShopUser by ID -->
     <select id="selectUserEmailByEmail" resultMap="UserAuthenticationMap">
-        SELECT id,email,password,role FROM user_authentication WHERE email = #{email}
+        SELECT id,email,password,role FROM user_authentication WHERE email = #{email} AND status = 1
     </select>
 
     <select id="select" resultMap="UserAuthenticationMap">

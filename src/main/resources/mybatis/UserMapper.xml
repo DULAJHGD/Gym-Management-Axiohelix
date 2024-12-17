@@ -94,5 +94,6 @@
     <delete id="deleteUserById" parameterType="String">
         DELETE FROM user
         WHERE id = #{id}
+        where status = 1
     </delete>
 </mapper>
